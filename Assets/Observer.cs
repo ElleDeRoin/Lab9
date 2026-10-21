@@ -1,26 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Observer : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
+    [SerializeField] private int pointValue = 100;
+    private ScoreManager _scoreManager;
 
-    //adjust score when the score changes
-    private void OnScoreChanged(int newScore)
+    //subscribe to score manager events
+    public void Setup(ScoreManager scoreManager)
     {
-        Debug.Log("Score updated: " + newScore);
+        _scoreManager = scoreManager;
     }
 
-    //subscribe to the score changed event when the observer is created
-    private void Awake()
+    //kill enemy and add score when it takes damage
+    public void TakeDamage(int damage)
     {
-        ScoreManager.OnScoreChanged += OnScoreChanged;
+        Die();
     }
-
-    //unsubscribe from the score changed event when the observer is destroyed
-    private void OnDestroy()
+ 
+    //death logic
+    private void Die()
     {
-        ScoreManager.OnScoreChanged -= OnScoreChanged;
+        _scoreManager.AddScore(pointValue);
+
+        Destroy(gameObject);
     }
 }
-
