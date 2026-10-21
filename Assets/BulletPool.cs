@@ -7,7 +7,7 @@ public class BulletPool : MonoBehaviour
     public static BulletPool SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
-    public int amountToPool = 25;
+    public int amountToPool = 15;
 
     void Awake() {
         SharedInstance = this;

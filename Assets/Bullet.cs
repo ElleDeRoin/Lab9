@@ -13,19 +13,28 @@ public class Bullet : MonoBehaviour
 
     private float _timer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // GameObject bullet = BulletPool.SharedInstance.GetPooledObject();
-        // if (bullet != null) {
-        //     bullet.SetActive(true);
-        // }
-
+    void OnEnable() {
+        _timer = 0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+        _timer += Time.deltaTime;
+        if (_timer >= maxLifeTime) {
+            ReturnToPool();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag(targetTag)) {
+            OnHitTarget?.Invoke(other.gameObject);
+            ReturnToPool();
+        }
+    }
+
+    private void ReturnToPool() {
+        gameObject.SetActive(false);
     }
 }
