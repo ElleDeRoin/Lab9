@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Observer : MonoBehaviour
 {
     [SerializeField] private int pointValue = 100;
     private ScoreManager _scoreManager;
