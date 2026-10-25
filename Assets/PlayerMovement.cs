@@ -12,6 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public float maxLeft = -8f;
     public float maxRight = 8f;
 
+    // Stats
+    public int points;
+
+    private void Start()
+    {
+        points = 0;
+    }
+
     private void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
