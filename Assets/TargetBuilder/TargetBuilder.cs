@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is the builder interface.
+
 public abstract class TargetBuilder
 {
     protected Target target;

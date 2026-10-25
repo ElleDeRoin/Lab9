@@ -9,6 +9,8 @@ public class Builder : MonoBehaviour
     {
         TargetBuilder builder;
         Shop shop = new Shop();
+
+        // 10 of each target
     }
 
     // Update is called once per frame
